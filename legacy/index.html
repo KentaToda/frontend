@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ojoya - AI鑑定</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Ojoya</h1>
+      <p class="tagline">AIが商品を鑑定します</p>
+    </header>
+
+    <main>
+      <section class="upload-section">
+        <div class="upload-area" id="uploadArea" role="button" tabindex="0" aria-label="画像をアップロード">
+          <div class="upload-content" id="uploadContent">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 16l4-4 4 4M12 12l4-4 4 4M4 20h16M12 4v12"/>
+            </svg>
+            <p class="upload-text">クリックまたはドラッグで画像を選択</p>
+            <p class="upload-hint">JPG, PNG対応</p>
+          </div>
+          <img class="preview-image" id="previewImage" alt="プレビュー">
+        </div>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/jpeg,image/png,image/webp"
+          capture="environment"
+          hidden
+        >
+        <button class="clear-btn" id="clearBtn" hidden>画像をクリア</button>
+      </section>
+
+      <button class="submit-btn" id="submitBtn" disabled>
+        <span class="btn-text">鑑定する</span>
+        <span class="btn-loading" hidden>
+          <span class="spinner"></span>
+          鑑定中...
+        </span>
+      </button>
+
+      <section class="result-section" id="resultSection" hidden>
+        <div class="result-card">
+          <div class="result-item">
+            <span class="result-label">商品名</span>
+            <span class="result-value" id="itemName">-</span>
+          </div>
+          <div class="result-item price">
+            <span class="result-label">推定価格</span>
+            <span class="result-value" id="priceRange">-</span>
+          </div>
+          <div class="result-item advice">
+            <span class="result-label">鑑定コメント</span>
+            <p class="result-advice" id="advice">-</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="error-message" id="errorMessage" hidden></div>
+    </main>
+
+    <footer>
+      <p>Ojoya MVP</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
