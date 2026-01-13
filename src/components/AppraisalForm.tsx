@@ -1,13 +1,13 @@
 import { useState, useCallback } from 'react';
 import { ImagePicker } from '@/components/ImagePicker';
-import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { AnalysisProgress } from '@/components/AnalysisProgress';
 import { AppraisalResult } from '@/components/AppraisalResult';
 import { Button } from '@/components/ui/button';
 import { useAnalyze } from '@/hooks/useAnalyze';
 
 export function AppraisalForm() {
   const [imageBase64, setImageBase64] = useState<string | null>(null);
-  const { analyze, reset, isLoading, isSuccess, isError, result, error } = useAnalyze();
+  const { analyze, reset, isLoading, isSuccess, isError, result, error, thinkingEvents } = useAnalyze();
 
   const handleImageSelect = useCallback((base64: string) => {
     setImageBase64(base64);
@@ -48,8 +48,13 @@ export function AppraisalForm() {
         </Button>
       )}
 
-      {/* ローディング */}
-      {isLoading && <LoadingSpinner />}
+      {/* 分析進捗 */}
+      {(isLoading || thinkingEvents.length > 0) && (
+        <AnalysisProgress
+          isLoading={isLoading}
+          thinkingEvents={thinkingEvents}
+        />
+      )}
 
       {/* エラー */}
       {isError && error && (

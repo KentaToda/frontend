@@ -59,3 +59,19 @@ export interface UserProfile {
   total_appraisals: number;
   platform: Platform;
 }
+
+// ストリーミングイベントのノード種別
+export type ThinkingNode = 'vision' | 'search' | 'price';
+
+// ストリーミングイベント種別
+export type ThinkingEventType = 'node_start' | 'thinking' | 'node_complete' | 'complete' | 'error';
+
+// ストリーミングイベント
+export interface ThinkingEvent {
+  type: ThinkingEventType;
+  node?: ThinkingNode;
+  message?: string;
+  data?: Record<string, unknown>;
+  result?: AnalyzeResponse;
+  timestamp: number;
+}
