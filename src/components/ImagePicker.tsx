@@ -42,10 +42,8 @@ export function ImagePicker({ onImageSelect, onImageClear, disabled }: ImagePick
       reader.onload = () => {
         const result = reader.result as string;
         setPreview(result);
-        // data:image/...;base64, プレフィックスを除去してコールバック
-        const base64Index = result.indexOf('base64,');
-        const base64Data = base64Index !== -1 ? result.substring(base64Index + 7) : result;
-        onImageSelect(base64Data);
+        // data:image/...;base64,... 形式のままコールバック（バックエンドがこの形式を期待）
+        onImageSelect(result);
       };
       reader.readAsDataURL(file);
     },

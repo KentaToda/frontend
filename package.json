@@ -18,6 +18,11 @@
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.4.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.55.1",
+    "@tailwindcss/oxide-win32-x64-msvc": "^4.1.18",
+    "lightningcss-win32-x64-msvc": "^1.30.2"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@tailwindcss/vite": "^4.1.18",
